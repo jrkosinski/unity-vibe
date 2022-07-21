@@ -29,6 +29,17 @@ app.post('/tokens/:address', async (req, res) => {
     res.send(balance.toString());
 });
 
+app.post('/pay/:address', async (req, res) => {
+    const address = req.params.address;
+    console.log('Got body:', req.body);
+    const amount = parseInt(req.body.amount);
+    console.log(`request to award ${amount} tokens to ${address}`);
+
+    const claimed = await api.claimUserTokens(address, amount);
+    const balance = await api.getBalance(address);
+    res.send(balance.toString());
+});
+
 app.listen(port, () => {
     console.log(`API listening on port ${port}`)
 })

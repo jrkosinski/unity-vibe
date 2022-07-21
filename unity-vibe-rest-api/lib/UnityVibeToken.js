@@ -20,7 +20,7 @@ class UnityVibeToken {
     async _init() {
         if (!this._contract) {
             const [owner, addr1, addr2] = await ethers.getSigners();
-            this._owner = owner;
+            this._owner = owner.address;
             this._contract = await ethers.getContractAt("UnityVibeToken", this.address);
             console.log(`got contract at ${this.address}`); 
         }
@@ -28,7 +28,7 @@ class UnityVibeToken {
 
     async mint(amount) {
         await this._init();
-        this.mintTo(this._owner.address, amount);
+        this.mintTo(this._owner, amount);
     }
 
     //TODO: seems to not be working
@@ -89,6 +89,16 @@ class UnityVibeToken {
         await this._init();
         return await this._contract.balanceOf(addr);
     }
+    
+    async getAllowance(addr) {
+        await this._init();
+        return await this._contract.allowance(addr, this._owner); 
+    };
+
+    async pullFrom(addr, amount) {
+        await this._init();
+        return await this._contract.transferFrom(addr, this._owner, amount);
+    };
 }
 
 module.exports = {
