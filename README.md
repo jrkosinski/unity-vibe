@@ -71,6 +71,9 @@ TASKS:
 - create a token 
 - create an NFT 
 - use case: getTokens 
+	- restapi method 
+	- call method from Unity module 
+	
 - use case: hasToken (in game) 
 - use case: awardToken (in game) 
 - use case: spendToken (in game) 
