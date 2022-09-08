@@ -53,3 +53,24 @@ ON-CHAIN CODE
 transferToken
 spendToken
 
+
+REST: 
+- centralized server 
+- security: timestamp in request, consider jwt too 
+- standard APIs, pluggable security & backend? 
+
+ON-CHAIN: 
+- ? 
+
+UNITY: 
+- ? 
+- ? 
+
+
+TASKS: 
+- create a token 
+- create an NFT 
+- use case: getTokens 
+- use case: hasToken (in game) 
+- use case: awardToken (in game) 
+- use case: spendToken (in game) 
