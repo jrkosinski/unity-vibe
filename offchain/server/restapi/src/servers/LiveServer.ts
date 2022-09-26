@@ -1,4 +1,4 @@
-import { Server, TokenInfo } from "./server";
+import { IServer, TokenInfo } from "./IServer";
 import { ethers, BigNumber } from 'ethers';
 const unityTokenAbi = require("../contracts/UnityTokenABI");
 import dotenv from 'dotenv';
@@ -9,7 +9,7 @@ const provider = new ethers.providers.AlchemyProvider(
     process.env.ALCHEMY_KEY
 );
 
-export default class LiveServer implements Server {
+export default class LiveServer implements IServer {
     tokenContract: ethers.Contract;
     adminWallet: ethers.Wallet;
     
@@ -39,7 +39,7 @@ export default class LiveServer implements Server {
         return output; 
     }
 
-    async awardTokens(address: String, quantity: Number): Promise<TokenInfo[]> {
+    async awardTokens(address: String, tokenAddress: String, quantity: Number): Promise<TokenInfo[]> {
         let output: TokenInfo[] = new Array();
 
         await this.tokenContract.connect(this.adminWallet).mint(address, quantity); 

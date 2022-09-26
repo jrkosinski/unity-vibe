@@ -12,22 +12,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const server_1 = require("./server");
+const IServer_1 = require("./IServer");
 const ethers_1 = require("ethers");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 class MockServer {
+    constructor() {
+        this.validAddress = "0xcEa845CA58C8dD4369810c3b5168C49Faa34E6F3";
+    }
     getTokens(address) {
         return __awaiter(this, void 0, void 0, function* () {
-            let output = new Array();
-            output.push(new server_1.TokenInfo("UTK", ethers_1.BigNumber.from("33")));
-            return output;
+            if (address.toLowerCase() == this.validAddress.toLowerCase()) {
+                let output = new Array();
+                output.push(new IServer_1.TokenInfo("UTK", ethers_1.BigNumber.from("33")));
+                return output;
+            }
+            else {
+                return [];
+            }
         });
     }
-    awardTokens(address, quantity) {
+    awardTokens(address, tokenAddress, quantity) {
         return __awaiter(this, void 0, void 0, function* () {
             let output = new Array();
-            output.push(new server_1.TokenInfo("UTK", ethers_1.BigNumber.from("33")));
+            output.push(new IServer_1.TokenInfo("UTK", ethers_1.BigNumber.from("33")));
             return output;
         });
     }

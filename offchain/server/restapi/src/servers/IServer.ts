@@ -10,7 +10,7 @@ export class TokenInfo {
     }
 }
 
-export interface Server {
+export interface IServer {
     getTokens(address: String) : Promise<TokenInfo[]>;
-    awardTokens(address: String, quantity: Number): Promise<TokenInfo[]>;
+    awardTokens(address: String, tokenAddress: String, quantity: Number): Promise<TokenInfo[]>;
 }; 

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const server_1 = require("./server");
+const IServer_1 = require("./IServer");
 const ethers_1 = require("ethers");
 const unityTokenAbi = require("../contracts/UnityTokenABI");
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -28,7 +28,7 @@ class LiveServer {
         return __awaiter(this, void 0, void 0, function* () {
             const symbol = "UTK"; //await this.tokenContract.symbol();
             const balance = yield this.tokenContract.balanceOf(address);
-            return new server_1.TokenInfo(symbol, balance);
+            return new IServer_1.TokenInfo(symbol, balance);
         });
     }
     getTokens(address) {
@@ -39,7 +39,7 @@ class LiveServer {
             return output;
         });
     }
-    awardTokens(address, quantity) {
+    awardTokens(address, tokenAddress, quantity) {
         var _a;
         return __awaiter(this, void 0, void 0, function* () {
             let output = new Array();
